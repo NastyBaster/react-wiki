@@ -14,7 +14,7 @@ const Card = ({ results }) => {
           <div
             className={`${styles.card} d-flex flex-column justify-content-center`}
           >
-            <img className={`${styles.img} img-fluid`} src={image} alt="" />
+            <img className={`${styles.img} img-fluid`} src={image} alt="" loading="lazy"/>
             <div className={`${styles.content}`}>
               <div className="fs-5 fw-bold mb-4">{name}</div>
               <div className="">
