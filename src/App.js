@@ -27,10 +27,22 @@ function App() {
 
         const totalPages = firstData.info.pages;
         let allData = [...firstData.results];
+        const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
         for (let i = 2; i <= totalPages; i++) {
+          await sleep(100);
+
           let res = await fetch(
             `https://rickandmortyapi.com/api/character/?page=${i}`,
           );
+
+          if (res.status === 429) {
+            await sleep(2000);
+            res = await fetch(
+              `https://rickandmortyapi.com/api/character/?page=${i}`,
+            );
+          }
+
           let data = await res.json();
           if (data.results) {
             allData = [...allData, ...data.results];
